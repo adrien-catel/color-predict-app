@@ -1,7 +1,7 @@
 {
-  "name": "color-predict",
+  "name": "color-predict-app",
   "version": "1.0.0",
-  "description": "An app to predict potential colorful sky",
+  "description": "Sunrise and Sunset Prediction",
   "main": "src/App.js",
   "scripts": {
     "test": "",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "TBD"
+    "url": "https://github.com/adrien-catel/color-predict-app/"
   },
   "author": "Adrien Catel <adriencatel@gmail.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "TBD"
+    "url": "https://github.com/adrien-catel/color-predict-app/issues"
   },
-  "homepage": "TBD",
+  "homepage": "https://github.com/adrien-catel/color-predict-app/",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
