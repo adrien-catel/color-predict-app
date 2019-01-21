@@ -35,3 +35,5 @@ npm run dev
 - Color indicator implementation
 - Add criteria (did it rain before event?)
 - MCDM implementation for optimal result?
+- Add Test Jest
+- Use Flow?
