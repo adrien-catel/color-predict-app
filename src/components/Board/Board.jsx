@@ -2,10 +2,11 @@ import React from "react";
 import DarkSkyApi from 'dark-sky-api';
 import moment from 'moment';
 
-import { GetSunTimeInfo } from "./utils/Weather";
-import { IsMorning } from "./utils/Date";
+import { GetSunTimeInfo } from "/utils/Weather";
+import { IsMorning } from "/utils/Date";
 
-import Card from "./Card";
+import './Board.css';
+import Card from "/components/Card";
 
 DarkSkyApi.apiKey =  process.env.DARKSKY_API_KEY;
 

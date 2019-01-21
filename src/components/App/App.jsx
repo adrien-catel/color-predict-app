@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, Link } from "@reach/router";
 
-import Header from "./Header";
-import Board from "./Board";
-import Footer from "./Footer";
+import './App.css';
+
+import Header from "/components/Header";
+import Board from "/components/Board";
+import Footer from "/components/Footer";
 
 class App extends React.Component {
   render() {
@@ -18,4 +19,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;

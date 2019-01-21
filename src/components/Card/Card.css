@@ -1,0 +1,16 @@
+.card-body {
+    width: 350px;
+    margin: 0 auto;
+}
+
+.progress {
+    height: 20px !important;
+}
+
+.progress-bar {
+    width: 100%;
+}
+
+dt {
+    text-align: right;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 
+import './Footer.css';
 import Poweredby from "/img/poweredby-darkbackground.png";
 
 class Footer extends React.Component {

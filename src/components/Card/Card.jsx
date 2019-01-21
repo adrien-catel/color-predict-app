@@ -1,7 +1,8 @@
 import React from "react";
 import styled from '@emotion/styled'
 
-import Colors from "./Utils/Colors";
+import './Card.css';
+import Colors from "/utils/Colors";
 
 const SpanColor = styled.span(
     {
