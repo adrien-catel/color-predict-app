@@ -29,8 +29,8 @@ npm run dev
 
 ### TODO LIST
 
-- Convert to jsx
-- Refactoring by component
+- ~~Convert to jsx~~
+- ~~Refactoring by component~~
 - Redux / Redux-thunk implementation
 - Color indicator implementation
 - Add criteria (did it rain before event?)
