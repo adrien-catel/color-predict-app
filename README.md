@@ -26,3 +26,12 @@ npm install
 ```
 npm run dev
 ```
+
+### TODO LIST
+
+- Convert to jsx
+- Refactoring by component
+- Redux / Redux-thunk implementation
+- Color indicator implementation
+- Add criteria (did it rain before event?)
+- MCDM implementation for optimal result?
