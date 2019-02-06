@@ -5,7 +5,7 @@ import './Card.css';
 import { colorInterval, 
   COLOR_RANGE_CLOUD_DENSITY, 
   COLOR_RANGE_VISIBILITY,
-  COLOR_RANGE_WIND } from "/utils/Colors";
+  COLOR_RANGE_INVERT } from "/utils/Colors";
 import { getIcon } from "/utils/Icons";
 
 const SpanColor = styled.span(
@@ -63,14 +63,13 @@ class Card extends React.Component {
     }
 
     _display_wind_speed(value) {
-        var color = colorInterval(value, 0, 100, COLOR_RANGE_WIND);
-        return (<SpanColor color={color}>{value}</SpanColor>);  
+        var color = colorInterval(value, 0, 100, COLOR_RANGE_INVERT);
+        return (<SpanColor color={color}>{value} mPh</SpanColor>);  
     }
 
     _display_humidity(value) {
-        return (
-            <span className="font-weight-bold">{value}</span>
-        )
+        var color = colorInterval(value, 0, 1, COLOR_RANGE_INVERT);
+        return (<SpanColor color={color}>{value*100}%</SpanColor>);
     }
 
     _display_visibility(value) {

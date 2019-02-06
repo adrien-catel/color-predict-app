@@ -27,7 +27,7 @@ export const COLOR_RANGE_VISIBILITY = [ColorsBase.minimal_1,
   ColorsBase.optimal_1, 
   ColorsBase.optimal];
 
-export const COLOR_RANGE_WIND = [ColorsBase.optimal, 
+export const COLOR_RANGE_INVERT = [ColorsBase.optimal, 
   ColorsBase.optimal_1, 
   ColorsBase.minimal, 
   ColorsBase.minimal_1];
