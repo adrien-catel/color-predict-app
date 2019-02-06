@@ -2,24 +2,27 @@ import React from "react";
 import styled from '@emotion/styled'
 
 import './Card.css';
-import Colors from "/utils/Colors";
+import { colorInterval, 
+  COLOR_RANGE_CLOUD_DENSITY, 
+  COLOR_RANGE_VISIBILITY,
+  COLOR_RANGE_WIND } from "/utils/Colors";
+import { getIcon } from "/utils/Icons";
 
 const SpanColor = styled.span(
-    {
-      color: Colors.optimal
-    },
-  )
+  props => ({ color: props.color })
+)
 
 class Card extends React.Component {
     render() {
-        const { title, summary, cloudCover, pressure, windSpeed, humidity, visibility } = this.props;
+        const { title, summary, cloudCover, pressure, windSpeed, humidity, visibility, icon} = this.props;
         return (
             <div className="col-md-6 col-sm-12">
                 <div className="card">
                     <div className="card-body">
                         <h5 className="card-title text-center">{title}</h5>
                         <blockquote className="blockquote text-center font-italic">
-                            <p className="mb-0">{summary}</p>
+                          <img src={getIcon(icon)} alt={summary} className="weather-icon" />                          
+                          <p className="mb-0">{summary}</p>
                         </blockquote>
                         <dl className="row">
                             <dd className="col-sm-8">Cloud Density</dd>
@@ -49,10 +52,8 @@ class Card extends React.Component {
     }
 
     _display_cloud_density(value) {
-        return (
-            // <span className="font-weight-bold">{value}</span>
-            <SpanColor>{value}</SpanColor>
-        )
+      var color = colorInterval(value, 0, 1, COLOR_RANGE_CLOUD_DENSITY);
+      return (<SpanColor color={color}>{value*100}%</SpanColor>);     
     }
 
     _display_pressure(value) {
@@ -62,9 +63,8 @@ class Card extends React.Component {
     }
 
     _display_wind_speed(value) {
-        return (
-            <span className="font-weight-bold">{value}</span>
-        )
+        var color = colorInterval(value, 0, 100, COLOR_RANGE_WIND);
+        return (<SpanColor color={color}>{value}</SpanColor>);  
     }
 
     _display_humidity(value) {
@@ -74,9 +74,8 @@ class Card extends React.Component {
     }
 
     _display_visibility(value) {
-        return (
-            <span className="font-weight-bold">{value}</span>
-        )
+        var color = colorInterval(value, 0, 10, COLOR_RANGE_VISIBILITY);
+        return (<SpanColor color={color}>{value}</SpanColor>);  
     }
 
     _display_result(values) {

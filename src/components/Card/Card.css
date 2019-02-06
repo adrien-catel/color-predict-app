@@ -14,3 +14,7 @@
 dt {
     text-align: right;
 }
+
+blockquote img {
+  width: 75px;
+}

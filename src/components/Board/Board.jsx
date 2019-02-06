@@ -47,6 +47,7 @@ class Board extends React.Component {
                     windSpeed={firstCard.windSpeed}
                     humidity={firstCard.humidity}
                     visibility={firstCard.visibility}
+                    icon={firstCard.icon}                    
                 />
                 <Card
                     title={secondCard.title}
@@ -56,6 +57,7 @@ class Board extends React.Component {
                     windSpeed={secondCard.windSpeed}
                     humidity={secondCard.humidity}
                     visibility={secondCard.visibility}
+                    icon={secondCard.icon}
                 />
             </div>
         );
@@ -107,16 +109,17 @@ class Board extends React.Component {
     }
 
     _load_card_content(date, condition) {
-        var content = {
-            title: IsMorning(date) ? "Sunrise - " + date.toLocaleString() : "Sunset - " + date.toLocaleString(),
-            windSpeed: condition.windSpeed,
-            visibility: condition.visibility,
-            pressure: condition.pressure,
-            humidity: condition.humidity,
-            cloudCover: condition.cloudCover,
-            summary: condition.summary,
-        }
-        return content;
+      var content = {
+          title: IsMorning(date) ? "Sunrise - " + date.toLocaleString() : "Sunset - " + date.toLocaleString(),
+          windSpeed: condition.windSpeed,
+          visibility: condition.visibility,
+          pressure: condition.pressure,
+          humidity: condition.humidity,
+          cloudCover: condition.cloudCover,
+          summary: condition.summary,
+          icon: condition.icon
+      }
+      return content;
     }
 }
 

@@ -11,7 +11,7 @@ class Header extends React.Component {
             <header>
                 <Link to="/">
                     <div className="logo">
-                        <img src={Logo} />
+                        <img src={Logo} alt="Color Predict" />
                         <div className="logo-text">
                             <div className="logo-row">COLOR</div>
                             <div className="logo-row">PREDICT</div>
