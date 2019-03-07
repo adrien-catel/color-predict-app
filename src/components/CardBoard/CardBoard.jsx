@@ -3,9 +3,11 @@ import DarkSkyApi from 'dark-sky-api';
 import moment from 'moment';
 import { connect } from "react-redux";
 
-import { 
+import {
+  loadUserPosition,
   setFirstPrediction,
-  setSecondPrediction
+  setSecondPrediction,
+  loadPrediction
 } from "/actions/index";
 
 import { GetSunTimeInfo } from "/utils/Weather";
@@ -18,12 +20,10 @@ DarkSkyApi.apiKey =  process.env.DARKSKY_API_KEY;
 
 class CardBoard extends React.Component {
     componentDidMount() {
-        // load the user position
-        DarkSkyApi.loadPosition()
-            .then(pos => {
-                // then init the cards
-                this._init_cards(pos);
-            });
+        this.props.loadUserPosition()
+                    .then(() => {
+                      this._init_cards(this.props.userPosition);
+                    });
     }
 
     render() {
@@ -93,6 +93,7 @@ class CardBoard extends React.Component {
 
         // convert the first date to a moment
         var moment_first = moment(ordered_date_list[0]);
+
         DarkSkyApi.loadTime(moment_first)
             .then(result => {
                 this.props.setFirstPrediction(this._load_card_content(ordered_date_list[0], result.currently));
@@ -124,6 +125,8 @@ class CardBoard extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
+    loadUserPosition: () => dispatch(loadUserPosition()),
+    loadPrediction: (moment) => dispatch(loadPrediction(moment)),
     setFirstPrediction: prediction => dispatch(setFirstPrediction(prediction)),
     setSecondPrediction: prediction => dispatch(setSecondPrediction(prediction))
   };
@@ -131,6 +134,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = state => {
   return { 
+    userPosition: state.userPosition,
     firstPrediction: state.firstPrediction,
     secondPrediction: state.secondPrediction
   };

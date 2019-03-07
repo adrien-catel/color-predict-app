@@ -32,9 +32,10 @@ npm run dev
 - ~~Convert to jsx~~
 - ~~Refactoring by component~~
 - ~~Redux / react-redux implementation~~
+- ~~Redux-thunk implementation~~
 - Redux refactoring
-- Redux-thunk implementation
-- Color indicator implementation
+- Redux-thunk refactoring
+- Color indicator implementation (on going)
 - Add criteria (did it rain before event?)
 - MCDM implementation for optimal result?
 - Add Test Jest

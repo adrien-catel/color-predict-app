@@ -33,7 +33,8 @@
     "parcel-bundler": "^1.9.7",
     "prettier": "^1.14.2",
     "react-redux": "^6.0.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "dependencies": {
     "@emotion/core": "^10.0.6",
