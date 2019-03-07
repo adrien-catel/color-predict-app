@@ -31,7 +31,9 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
     "parcel-bundler": "^1.9.7",
-    "prettier": "^1.14.2"
+    "prettier": "^1.14.2",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1"
   },
   "dependencies": {
     "@emotion/core": "^10.0.6",

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import './App.css';
 
 import Header from "/components/Header";
-import Board from "/components/Board";
+import CardBoard from "/components/CardBoard";
 import Footer from "/components/Footer";
 
 class App extends React.Component {
@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <Header />
-        <Board />
+        <CardBoard />
         <Footer />
       </div>
     );

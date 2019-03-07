@@ -1,22 +1,22 @@
 import React from "react";
 import DarkSkyApi from 'dark-sky-api';
 import moment from 'moment';
+import { connect } from "react-redux";
+
+import { 
+  setFirstPrediction,
+  setSecondPrediction
+} from "/actions/index";
 
 import { GetSunTimeInfo } from "/utils/Weather";
 import { IsMorning } from "/utils/Date";
 
-import './Board.css';
+import './CardBoard.css';
 import Card from "/components/Card";
 
 DarkSkyApi.apiKey =  process.env.DARKSKY_API_KEY;
 
-class Board extends React.Component {
-    // init the component state
-    state = {
-        firstCard: "",
-        secondCard: "",
-    }
-
+class CardBoard extends React.Component {
     componentDidMount() {
         // load the user position
         DarkSkyApi.loadPosition()
@@ -27,9 +27,9 @@ class Board extends React.Component {
     }
 
     render() {
-        const { firstCard, secondCard } = this.state;
+        const { firstPrediction, secondPrediction } = this.props;
 
-        if (!firstCard && !secondCard) {
+        if (!firstPrediction.isReady && !secondPrediction.isReady) {
             return (
                 <p className="text-center">
                     Loading the awesome prediction!
@@ -40,24 +40,24 @@ class Board extends React.Component {
         return (
             <div className="row">
                 <Card
-                    title={firstCard.title}
-                    summary={firstCard.summary}
-                    cloudCover={firstCard.cloudCover}
-                    pressure={firstCard.pressure}
-                    windSpeed={firstCard.windSpeed}
-                    humidity={firstCard.humidity}
-                    visibility={firstCard.visibility}
-                    icon={firstCard.icon}                    
+                    title={firstPrediction.title}
+                    summary={firstPrediction.summary}
+                    cloudCover={firstPrediction.cloudCover}
+                    pressure={firstPrediction.pressure}
+                    windSpeed={firstPrediction.windSpeed}
+                    humidity={firstPrediction.humidity}
+                    visibility={firstPrediction.visibility}
+                    icon={firstPrediction.icon}                    
                 />
                 <Card
-                    title={secondCard.title}
-                    summary={secondCard.summary}
-                    cloudCover={secondCard.cloudCover}
-                    pressure={secondCard.pressure}
-                    windSpeed={secondCard.windSpeed}
-                    humidity={secondCard.humidity}
-                    visibility={secondCard.visibility}
-                    icon={secondCard.icon}
+                    title={secondPrediction.title}
+                    summary={secondPrediction.summary}
+                    cloudCover={secondPrediction.cloudCover}
+                    pressure={secondPrediction.pressure}
+                    windSpeed={secondPrediction.windSpeed}
+                    humidity={secondPrediction.humidity}
+                    visibility={secondPrediction.visibility}
+                    icon={secondPrediction.icon}
                 />
             </div>
         );
@@ -95,16 +95,14 @@ class Board extends React.Component {
         var moment_first = moment(ordered_date_list[0]);
         DarkSkyApi.loadTime(moment_first)
             .then(result => {
-                // update the state (re render)
-                this.setState({firstCard: this._load_card_content(ordered_date_list[0], result.currently)})
+                this.props.setFirstPrediction(this._load_card_content(ordered_date_list[0], result.currently));
             });
 
         // convert the second date to a moment
         var moment_second = moment(ordered_date_list[1]);
         DarkSkyApi.loadTime(moment_second)
             .then(result => {
-                // update the state (re render)
-                this.setState({secondCard: this._load_card_content(ordered_date_list[1], result.currently)})
+                this.props.setSecondPrediction(this._load_card_content(ordered_date_list[1], result.currently));
             });
     }
 
@@ -117,10 +115,25 @@ class Board extends React.Component {
           humidity: condition.humidity,
           cloudCover: condition.cloudCover,
           summary: condition.summary,
-          icon: condition.icon
+          icon: condition.icon,
+          isReady: true
       }
       return content;
     }
 }
 
-export default Board;
+function mapDispatchToProps(dispatch) {
+  return {
+    setFirstPrediction: prediction => dispatch(setFirstPrediction(prediction)),
+    setSecondPrediction: prediction => dispatch(setSecondPrediction(prediction))
+  };
+}
+
+const mapStateToProps = state => {
+  return { 
+    firstPrediction: state.firstPrediction,
+    secondPrediction: state.secondPrediction
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardBoard);
