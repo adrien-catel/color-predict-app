@@ -33,7 +33,7 @@ npm run dev
 - ~~Refactoring by component~~
 - ~~Redux / react-redux implementation~~
 - ~~Redux-thunk implementation~~
-- Redux refactoring
+- ~~Redux refactoring (combine)~~
 - Redux-thunk refactoring
 - Color indicator implementation (on going)
 - Add criteria (did it rain before event?)

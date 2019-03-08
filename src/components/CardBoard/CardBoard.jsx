@@ -95,7 +95,6 @@ class CardBoard extends React.Component {
 
         DarkSkyApi.loadTime(moment_first)
             .then(result => {
-                console.log(result);
                 this.props.setFirstPrediction(this._load_card_content(ordered_date_list[0], result.currently));
             });
 
@@ -131,11 +130,11 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({user, prediction}) => {
   return { 
-    userPosition: state.userPosition,
-    firstPrediction: state.firstPrediction,
-    secondPrediction: state.secondPrediction
+    userPosition: user.userPosition,
+    firstPrediction: prediction.firstPrediction,
+    secondPrediction: prediction.secondPrediction
   };
 };
 
