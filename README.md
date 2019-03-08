@@ -40,3 +40,8 @@ npm run dev
 - MCDM implementation for optimal result?
 - Add Test Jest
 - Use Flow?
+
+
+<img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/026/square_256/react.png" alt="drawing" width="100"/>
+
+<img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/386/square_256/redux.png" alt="drawing" width="100"/>

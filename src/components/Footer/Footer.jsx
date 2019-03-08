@@ -7,8 +7,8 @@ class Footer extends React.Component {
   render() {
     return (
         <div className="footer">
-            <a target="_blank" href="https://darksky.net/poweredby/">
-                <img src={Poweredby} />
+            <a target="_blank" rel="noopener noreferrer" href="https://darksky.net/poweredby/"> 
+                <img src={Poweredby} alt="Powered by DarkSky" />
             </a>
         </div>
     );
