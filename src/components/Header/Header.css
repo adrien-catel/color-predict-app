@@ -29,6 +29,12 @@ header a {
     width: 50%;
     margin: 0 auto;
 }
+
+@media screen and (max-width: 750px) {
+  .pitch {
+    width: 100%;
+  }
+}
   
 .pitch p {
     margin-top: 10px;

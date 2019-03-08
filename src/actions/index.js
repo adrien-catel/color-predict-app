@@ -18,7 +18,7 @@ export function loadUserPosition() {
   return function(dispatch) {
     return DarkSkyApi.loadPosition()
       .then(pos => {
-          dispatch({ type: USER_POSITION_LOADED, payload: pos });
+        dispatch({ type: USER_POSITION_LOADED, payload: pos });
       });
   }
 }

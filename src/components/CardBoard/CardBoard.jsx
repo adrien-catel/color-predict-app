@@ -7,7 +7,6 @@ import {
   loadUserPosition,
   setFirstPrediction,
   setSecondPrediction,
-  loadPrediction
 } from "/actions/index";
 
 import { GetSunTimeInfo } from "/utils/Weather";
@@ -96,6 +95,7 @@ class CardBoard extends React.Component {
 
         DarkSkyApi.loadTime(moment_first)
             .then(result => {
+                console.log(result);
                 this.props.setFirstPrediction(this._load_card_content(ordered_date_list[0], result.currently));
             });
 
@@ -126,7 +126,6 @@ class CardBoard extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     loadUserPosition: () => dispatch(loadUserPosition()),
-    loadPrediction: (moment) => dispatch(loadPrediction(moment)),
     setFirstPrediction: prediction => dispatch(setFirstPrediction(prediction)),
     setSecondPrediction: prediction => dispatch(setSecondPrediction(prediction))
   };
