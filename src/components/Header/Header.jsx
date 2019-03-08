@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Link } from "@reach/router";
+import { Link } from "@reach/router";
 
 import './Header.css';
 import Logo from "/img/logo.png";
