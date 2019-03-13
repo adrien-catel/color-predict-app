@@ -3,22 +3,27 @@
 }
 
 .card-body {
-    width: 350px;
-    margin: 0 auto;
+  width: 350px;
+  margin: 0 auto;
 }
 
 .progress {
-    height: 20px !important;
+  height: 20px !important;
 }
 
 .progress-bar {
-    width: 100%;
+  width: 100%;
 }
 
 dt {
-    text-align: right;
+  text-align: right;
 }
 
 blockquote img {
   width: 75px;
+}
+
+.card-result {
+  text-align: center;
+  font-size: 3em;
 }
