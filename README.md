@@ -2,6 +2,7 @@
 
 Sunrise & Sunset prediction
 
+
 ### Prerequisites
 
 You should provide your own DarkSky API key then adding it into
@@ -10,6 +11,7 @@ a file named .env at the root of the project like so:
 ```
 DARKSKY_API_KEY=<YOUR_KEY>
 ```
+
 
 ### Get Started
 
@@ -27,6 +29,7 @@ npm install
 npm run dev
 ```
 
+
 ### TODO LIST
 
 - ~~Convert to jsx~~
@@ -42,7 +45,10 @@ npm run dev
 - Use Flow?
 - Data mining implementation
 
-<div style="margin-top: 50px;">
+
+### STACK
+
+<div>
   <img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/026/square_256/react.png" alt="react" width="50"/>
   <img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/386/square_256/redux.png" alt="redux" width="50"/>
   <img src="https://jestjs.io/img/jest.png" alt="jest" width="50"/>
