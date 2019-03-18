@@ -10,5 +10,24 @@
       }
     ]
   ],
-  "plugins": ["transform-class-properties"]
+  "plugins": [
+    "transform-class-properties",
+    [
+      "css-modules-transform", 
+      { 
+        "extensions": [".css"] 
+      } 
+    ],
+    [
+      "file-loader",
+      {
+        "name": "[hash].[ext]",
+        "extensions": ["png", "jpg", "jpeg", "gif", "svg"],
+        "publicPath": "/dist",
+        "outputPath": "/dist",
+        "context": "",
+        "limit": 0
+      }
+    ]
+  ]
 }

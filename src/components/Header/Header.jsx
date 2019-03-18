@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-import './Header.css';
-import Logo from "/img/logo.png";
+import "./Header.css";
+import Logo from "../../img/png/logo.png";
 
 class Header extends React.Component {
   render() {

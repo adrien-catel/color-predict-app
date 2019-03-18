@@ -5,8 +5,8 @@ import './Card.css';
 import { colorInterval, 
   COLOR_RANGE_CLOUD_DENSITY, 
   COLOR_RANGE,
-  COLOR_RANGE_INVERT } from "/utils/Colors";
-import { getIcon } from "/utils/Icons";
+  COLOR_RANGE_INVERT } from "../../utils/Colors";
+import { getIcon } from "../../utils/Icons";
 
 const SpanColor = styled.span(
   props => ({ 
