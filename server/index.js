@@ -1,20 +1,44 @@
 import express from "express";
 import React from "react";
+import moment from "moment";
 import { renderToNodeStream } from "react-dom/server";
 import { ServerLocation } from "@reach/router";
 import fs from "fs";
+import dotenv from "dotenv";
+
+import DarkSkyApi from "dark-sky-api";
+
 import App from "../src/components/App";
 
 const PORT = process.env.PORT || 3000;
-
 const html = fs.readFileSync("dist/index.html").toString();
-
 const parts = html.split("not rendered");
-
 const app = express();
 
+dotenv.config();
+DarkSkyApi.apiKey = process.env.DARKSKY_API_KEY;
+DarkSkyApi.proxy = true;
+
+// WS
+app.get("/api/darksky/loadtime/", (req, res, next) => {
+  const position = {
+    latitude: req.query.latitude, 
+    longitude: req.query.longitude
+  };
+  const time = moment(req.query.moment);
+  DarkSkyApi.loadTime(time, position)
+    .then(result => {
+      res.json(result);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
+});
+
+// APP
 app.use("/dist", express.static("dist"));
-app.use((req, res) => {
+app.use(("*"), (req, res) => {
   res.write(parts[0]);
   const reactMarkup = (
     <ServerLocation url={req.url}>

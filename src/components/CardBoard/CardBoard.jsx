@@ -1,7 +1,6 @@
 import React from "react";
-import DarkSkyApi from 'dark-sky-api';
-import moment from 'moment';
 import { connect } from "react-redux";
+import axios from "axios";
 
 import {
   loadUserPosition,
@@ -18,13 +17,12 @@ import { Prediction } from "../../utils/Prediction/Prediction";
 import { GetSunTimeInfo } from "../../utils/Weather";
 import { IsMorning } from "../../utils/Date";
 
-import './CardBoard.css';
+import "./CardBoard.css";
 import Card from "../../components/Card";
 
-DarkSkyApi.apiKey = process.env.DARKSKY_API_KEY;
 
 class CardBoard extends React.Component {
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this.props.loadUserPosition()
                 .then(() => {
                   this._init_cards(this.props.userPosition);
@@ -97,20 +95,36 @@ class CardBoard extends React.Component {
       ordered_date_list[0] = sun_today_info.sunrise;
       ordered_date_list[1] = sun_today_info.sunset;
     }
-
-    // convert the first date to a moment
-    var moment_first = moment(ordered_date_list[0]);
-    DarkSkyApi.loadTime(moment_first)
-      .then(result => {
-        this.props.setFirstPrediction(this._load_card_content(ordered_date_list[0], result.currently));
-      });
-
-    // convert the second date to a moment
-    var moment_second = moment(ordered_date_list[1]);
-    DarkSkyApi.loadTime(moment_second)
-      .then(result => {
-        this.props.setSecondPrediction(this._load_card_content(ordered_date_list[1], result.currently));
-      });
+    
+    var apiParameters = { 
+      params: { 
+        latitude: position.latitude, 
+        longitude: position.longitude,
+        moment: ordered_date_list[0]
+      }
+    };
+    axios.get("/api/darksky/loadtime/", apiParameters)
+      .then(response => {
+        this.props.setFirstPrediction(this._load_card_content(ordered_date_list[0], response.data.currently));
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    
+    apiParameters = { 
+      params: { 
+        latitude: position.latitude, 
+        longitude: position.longitude, 
+        moment: ordered_date_list[1]
+      }
+    };
+    axios.get("/api/darksky/loadtime/", apiParameters)
+      .then(response => {
+        this.props.setSecondPrediction(this._load_card_content(ordered_date_list[1], response.data.currently));
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   _load_card_content(date, condition) {
