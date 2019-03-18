@@ -7,24 +7,24 @@ import {
   loadUserPosition,
   setFirstPrediction,
   setSecondPrediction,
-} from "/actions/index";
+} from "../../actions/index";
 
-import { CriteriaCloud } from "/utils/Criteria/CriteriaCloud";
-import { CriteriaHumidity } from "/utils/Criteria/CriteriaHumidity";
-import { CriteriaVisibility } from "/utils/Criteria/CriteriaVisibility";
-import { CriteriaWind } from "/utils/Criteria/CriteriaWind";
-import { Prediction } from "/utils/Prediction/Prediction";
+import { CriteriaCloud } from "../../utils/Criteria/CriteriaCloud";
+import { CriteriaHumidity } from "../../utils/Criteria/CriteriaHumidity";
+import { CriteriaVisibility } from "../../utils/Criteria/CriteriaVisibility";
+import { CriteriaWind } from "../../utils/Criteria/CriteriaWind";
+import { Prediction } from "../../utils/Prediction/Prediction";
 
-import { GetSunTimeInfo } from "/utils/Weather";
-import { IsMorning } from "/utils/Date";
+import { GetSunTimeInfo } from "../../utils/Weather";
+import { IsMorning } from "../../utils/Date";
 
 import './CardBoard.css';
-import Card from "/components/Card";
+import Card from "../../components/Card";
 
 DarkSkyApi.apiKey = process.env.DARKSKY_API_KEY;
 
 class CardBoard extends React.Component {
-  componentDidMount() {
+  UNSAFE_componentWillMount() {
     this.props.loadUserPosition()
                 .then(() => {
                   this._init_cards(this.props.userPosition);

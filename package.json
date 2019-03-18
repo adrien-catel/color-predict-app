@@ -7,7 +7,9 @@
     "test": "",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "build": "parcel build --public-url ./dist/ src/index.html",
+    "start": "npm -s run build && babel-node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
+    "babel-plugin-css-modules-transform": "^1.6.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -40,7 +43,11 @@
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
     "@reach/router": "^1.1.1",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-file-loader": "^1.1.1",
+    "babel-plugin-transform-assets": "^1.0.2",
     "dark-sky-api": "^0.6.32",
+    "express": "^4.16.4",
     "images": "^3.0.1",
     "moment": "^2.23.0",
     "react": "^16.4.2",
