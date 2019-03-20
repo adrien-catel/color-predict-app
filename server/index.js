@@ -21,13 +21,16 @@ DarkSkyApi.proxy = true;
 
 // WS
 app.get("/api/darksky/loadtime/", (req, res, next) => {
+  console.log("API: /api/darksky/loadtime/");
   const position = {
     latitude: req.query.latitude, 
     longitude: req.query.longitude
   };
   const time = moment(req.query.moment);
+  console.log("API: Call to DarkSky");
   DarkSkyApi.loadTime(time, position)
     .then(result => {
+      console.log("API: callBack");
       res.json(result);
     })
     .catch(function (error) {
