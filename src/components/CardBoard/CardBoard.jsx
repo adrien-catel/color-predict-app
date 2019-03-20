@@ -14,7 +14,7 @@ import { CriteriaVisibility } from "../../utils/Criteria/CriteriaVisibility";
 import { CriteriaWind } from "../../utils/Criteria/CriteriaWind";
 import { Prediction } from "../../utils/Prediction/Prediction";
 
-import { GetSunTimeInfo } from "../../utils/Weather";
+import { GetOrderedListSunTimeInfo } from "../../utils/Weather";
 import { IsMorning } from "../../utils/Date";
 
 import "./CardBoard.css";
@@ -69,56 +69,30 @@ class CardBoard extends React.Component {
   }
 
   _init_cards(position) {
-    var ordered_date_list = new Array();
     // today's date
-    var today = new Date();
-    // get today's sun info
-    var sun_today_info = GetSunTimeInfo(today, position);
-    // if we already pass the sunrise
-    if (sun_today_info.sunrise < today){
-      // we need the tomorrow's info
-      var tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      var sun_tomorrow_info = GetSunTimeInfo(tomorrow, position);
-      // then we determine which info we display in which order
-      if(sun_today_info.sunset > today) {
-        // today and tomorrow info
-        ordered_date_list[0] = sun_today_info.sunset;
-        ordered_date_list[1] = sun_tomorrow_info.sunrise;
-      } else {
-        // today and tomorrow info
-        ordered_date_list[0] = sun_tomorrow_info.sunrise;
-        ordered_date_list[1] = sun_tomorrow_info.sunset;
-      }
-    } else {
-      // only today info
-      ordered_date_list[0] = sun_today_info.sunrise;
-      ordered_date_list[1] = sun_today_info.sunset;
-    }
+    var ordered_date_list = GetOrderedListSunTimeInfo(new Date(), position);
     
-    var apiParameters = { 
-      params: { 
-        latitude: position.latitude, 
-        longitude: position.longitude,
-        moment: ordered_date_list[0]
-      }
-    };
-    axios.get("/api/darksky/loadtime/", apiParameters)
+    axios.get("/api/darksky/loadtime/", {
+        params: { 
+          latitude: position.latitude, 
+          longitude: position.longitude, 
+          moment: ordered_date_list[0]
+        }
+      })
       .then(response => {
         this.props.setFirstPrediction(this._load_card_content(ordered_date_list[0], response.data.currently));
       })
       .catch(error => {
         console.log(error);
       })
-    
-    apiParameters = { 
-      params: { 
-        latitude: position.latitude, 
-        longitude: position.longitude, 
-        moment: ordered_date_list[1]
-      }
-    };
-    axios.get("/api/darksky/loadtime/", apiParameters)
+
+    axios.get("/api/darksky/loadtime/", {
+        params: { 
+          latitude: position.latitude, 
+          longitude: position.longitude, 
+          moment: ordered_date_list[1]
+        }
+      })
       .then(response => {
         this.props.setSecondPrediction(this._load_card_content(ordered_date_list[1], response.data.currently));
       })
