@@ -1,25 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 
 import {
   loadUserPosition,
-  setFirstPrediction,
-  setSecondPrediction,
+  loadFirstPrediction,
+  loadSecondPrediction,
 } from "../../actions/index";
 
-import { CriteriaCloud } from "../../utils/Criteria/CriteriaCloud";
-import { CriteriaHumidity } from "../../utils/Criteria/CriteriaHumidity";
-import { CriteriaVisibility } from "../../utils/Criteria/CriteriaVisibility";
-import { CriteriaWind } from "../../utils/Criteria/CriteriaWind";
-import { Prediction } from "../../utils/Prediction/Prediction";
-
 import { GetOrderedListSunTimeInfo } from "../../utils/Weather";
-import { IsMorning } from "../../utils/Date";
 
 import "./CardBoard.css";
 import Card from "../../components/Card";
-
 
 class CardBoard extends React.Component {
   componentDidMount() {
@@ -31,7 +22,6 @@ class CardBoard extends React.Component {
 
   render() {
     const { firstPrediction, secondPrediction } = this.props;
-
     if (!firstPrediction.isReady && !secondPrediction.isReady) {
       return (
         <p className="text-center">
@@ -51,7 +41,7 @@ class CardBoard extends React.Component {
           humidity={firstPrediction.humidity}
           visibility={firstPrediction.visibility}
           prediction={firstPrediction.prediction}
-          icon={firstPrediction.icon}                    
+          icon={firstPrediction.icon}                 
         />
         <Card
           title={secondPrediction.title}
@@ -69,68 +59,17 @@ class CardBoard extends React.Component {
   }
 
   _init_cards(position) {
-    // today's date
     var ordered_date_list = GetOrderedListSunTimeInfo(new Date(), position);
-    
-    axios.get("/api/darksky/loadtime/", {
-        params: { 
-          latitude: position.latitude, 
-          longitude: position.longitude, 
-          moment: ordered_date_list[0]
-        }
-      })
-      .then(response => {
-        this.props.setFirstPrediction(this._load_card_content(ordered_date_list[0], response.data.currently));
-      })
-      .catch(error => {
-        console.log(error);
-      })
-
-    axios.get("/api/darksky/loadtime/", {
-        params: { 
-          latitude: position.latitude, 
-          longitude: position.longitude, 
-          moment: ordered_date_list[1]
-        }
-      })
-      .then(response => {
-        this.props.setSecondPrediction(this._load_card_content(ordered_date_list[1], response.data.currently));
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-
-  _load_card_content(date, condition) {
-    let criteriaCloud = new CriteriaCloud(Math.floor(condition.cloudCover*100));
-    let criteriaWind = new CriteriaWind(Math.floor(condition.windSpeed));
-    let criteriaHumidity = new CriteriaHumidity(Math.floor(condition.humidity*100));
-    let criteriaVisibility = new CriteriaVisibility(Math.floor(condition.visibility));
-
-    let criteriaList = [criteriaCloud, criteriaWind, criteriaHumidity, criteriaVisibility];
-    let predictionResult = new Prediction(criteriaList).getResult();
-
-    var content = {
-      title: IsMorning(date) ? "Sunrise - " + date.toLocaleString() : "Sunset - " + date.toLocaleString(),
-      windSpeed: criteriaWind.value,
-      visibility: criteriaVisibility.value,
-      pressure: Math.floor(condition.pressure),
-      humidity: criteriaHumidity.value,
-      cloudCover: criteriaCloud.value,
-      prediction: predictionResult,
-      summary: condition.summary,
-      icon: condition.icon,
-      isReady: true,
-    }
-    return content;
+    this.props.loadFirstPrediction(ordered_date_list[0], position);
+    this.props.loadSecondPrediction(ordered_date_list[1], position);
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     loadUserPosition: () => dispatch(loadUserPosition()),
-    setFirstPrediction: prediction => dispatch(setFirstPrediction(prediction)),
-    setSecondPrediction: prediction => dispatch(setSecondPrediction(prediction))
+    loadFirstPrediction: (date, position) => dispatch(loadFirstPrediction(date, position)),
+    loadSecondPrediction: (date, position) => dispatch(loadSecondPrediction(date, position)),
   };
 }
 

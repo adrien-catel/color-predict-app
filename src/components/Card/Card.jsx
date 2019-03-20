@@ -16,7 +16,7 @@ const SpanColor = styled.span(
 
 class Card extends React.Component {
   render() {
-      const { title, summary, icon, cloudCover, pressure, windSpeed, humidity, visibility, prediction } = this.props;
+      const { title, summary, icon, cloudCover, windSpeed, humidity, visibility, prediction } = this.props;
       return (
         <div className="col-md-6 col-sm-12">
           <div className="card">
@@ -29,10 +29,6 @@ class Card extends React.Component {
               <dl className="row">
                 <dd className="col-sm-8">Cloud Density</dd>
                 <dt className="col-sm-4">{this._display_cloud_density(cloudCover)}</dt>
-              </dl>
-              <dl className="row">
-                <dd className="col-sm-8">Pressure</dd>
-                <dt className="col-sm-4">{this._display_pressure(pressure)}</dt>
               </dl>
               <dl className="row">
                 <dd className="col-sm-8">Wind speed</dd>
@@ -56,10 +52,6 @@ class Card extends React.Component {
   _display_cloud_density(value) {
     var color = colorInterval(value, 0, 100, COLOR_RANGE_CLOUD_DENSITY);
     return (<SpanColor color={color}>{value}%</SpanColor>);     
-  }
-
-  _display_pressure(value) {
-    return (<span className="font-weight-bold">{value}</span>)
   }
 
   _display_wind_speed(value) {
