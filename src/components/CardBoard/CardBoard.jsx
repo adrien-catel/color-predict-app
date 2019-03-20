@@ -31,7 +31,7 @@ class CardBoard extends React.Component {
     }
 
     return (
-      <div className="row">
+      <div className="row row-card">
         <Card
           title={firstPrediction.title}
           summary={firstPrediction.summary}

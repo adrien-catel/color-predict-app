@@ -27,20 +27,20 @@ class Card extends React.Component {
                 <p className="mb-0">{summary}</p>
               </blockquote>
               <dl className="row">
-                <dd className="col-sm-8">Cloud Density</dd>
-                <dt className="col-sm-4">{this._display_cloud_density(cloudCover)}</dt>
+                <dd className="col-8">Cloud Density</dd>
+                <dt className="col-4">{this._display_cloud_density(cloudCover)}</dt>
               </dl>
               <dl className="row">
-                <dd className="col-sm-8">Wind speed</dd>
-                <dt className="col-sm-4">{this._display_wind_speed(windSpeed)}</dt>
+                <dd className="col-8">Wind speed</dd>
+                <dt className="col-4">{this._display_wind_speed(windSpeed)}</dt>
               </dl>
               <dl className="row">
-                <dd className="col-sm-8">Humidity</dd>
-                <dt className="col-sm-4">{this._display_humidity(humidity)}</dt>
+                <dd className="col-8">Humidity</dd>
+                <dt className="col-4">{this._display_humidity(humidity)}</dt>
               </dl>
               <dl className="row">
-                <dd className="col-sm-8">Visibility</dd>
-                <dt className="col-sm-4">{this._display_visibility(visibility)}</dt>
+                <dd className="col-8">Visibility</dd>
+                <dt className="col-4">{this._display_visibility(visibility)}</dt>
               </dl>
               {this._display_result(prediction)}
             </div>

@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="container-fluid">
+        <div className="container-fluid app-container">
           <Header />
           <CardBoard />
           <Footer />

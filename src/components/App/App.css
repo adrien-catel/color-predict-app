@@ -8,4 +8,7 @@ body {
     margin: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-  
+
+.app-container {
+  padding: 0 0 0 0 !important;
+}
