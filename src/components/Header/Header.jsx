@@ -1,33 +1,19 @@
 import React from "react";
-import { Link } from "@reach/router";
 
 import "./Header.css";
-import Logo from "../../img/png/logo.png";
+import Logo from "../../img/png/color-predict-logo.png";
 
 class Header extends React.Component {
   render() {
     return (
-        <div>
-            <header>
-                <Link to="/">
-                    <div className="logo">
-                        <img src={Logo} alt="Color Predict" />
-                        <div className="logo-text">
-                            <div className="logo-row">COLOR</div>
-                            <div className="logo-row">PREDICT</div>
-                        </div>
-                    </div>
-                </Link>
-            </header>
-            <div className="pitch">
-                <p>
-                    This app want predict potential colorful sunrise and sunset based on your location.
-                    Cloud density,
-                    temperature,
-                    atmospheric pressure, humidity.. tbc
-                </p>
-            </div>
-        </div>
+      <nav className="navbar">
+        <a className="logo" href=".">
+          <div className="logo-app">
+            <img src={Logo} className="d-inline-block align-top" alt="" />
+            <div>Color Predict</div>
+          </div>
+        </a>
+      </nav>
     );
   }
 }
