@@ -20,30 +20,33 @@ class Card extends React.Component {
       return (
         <div className="col-md-6 col-sm-12">
           <div className="card">
-            <div className="card-body">
-              <h5 className="card-title text-center">{title}</h5>
-              <blockquote className="blockquote text-center font-italic">
-                <img src={getIcon(icon)} alt={summary} className="weather-icon" />                          
-                <p className="mb-0">{summary}</p>
-              </blockquote>
-              <dl className="row">
-                <dd className="col-8">Cloud Density</dd>
-                <dt className="col-4">{this._display_cloud_density(cloudCover)}</dt>
-              </dl>
-              <dl className="row">
-                <dd className="col-8">Wind speed</dd>
-                <dt className="col-4">{this._display_wind_speed(windSpeed)}</dt>
-              </dl>
-              <dl className="row">
-                <dd className="col-8">Humidity</dd>
-                <dt className="col-4">{this._display_humidity(humidity)}</dt>
-              </dl>
-              <dl className="row">
-                <dd className="col-8">Visibility</dd>
-                <dt className="col-4">{this._display_visibility(visibility)}</dt>
-              </dl>
-              {this._display_result(prediction)}
+            <div className="card-products">
+              <div className="card-product">
+                <div className="card-thumbnail">
+                  <img src={getIcon(icon)} alt={summary} />
+                  {this._display_result(prediction)}
+                </div>
+                <h1 className="card-title">{title}</h1>
+                <div className="card-description">
+                  {summary}
+                  <div className="card-detail-list">
+                    <span className="card-detail">
+                      cloud cov.: {this._display_cloud_density(cloudCover)}
+                    </span>
+                    <span className="card-detail">
+                      wind: {this._display_wind_speed(windSpeed)}
+                    </span>
+                    <span className="card-detail">
+                      humidity: {this._display_humidity(humidity)}
+                    </span>
+                    <span className="card-detail">
+                      visibility: {this._display_visibility(visibility)}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
+            
           </div>
         </div>
       );
