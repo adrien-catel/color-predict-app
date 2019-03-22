@@ -1,29 +1,118 @@
-.card {
-  margin-bottom: 20px;
+.card-btn {
+  border-radius: 2px;
+  padding: 8px 12px;
+  color: #D18B49;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s ease;
 }
 
-.card-body {
-  width: 350px;
+.card {
+  background: #FFFFFF;
+  max-width: 400px;
+  margin: 0px auto;
+  margin-bottom: 20px;
+  border: solid 1px #d800ff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+  box-sizing: border-box;
+  padding: 30px;
+  text-align: center;
+}
+
+.card-products {
+  position: relative;
+  overflow: visible;
+  transition: 0.5s ease;
+  height: 270px;
+}
+
+.card-product {
+  position: relative;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.5s ease;
   margin: 0 auto;
 }
 
-.progress {
-  height: 20px !important;
+.card-thumbnail {
+  margin: 0 0 48px;
 }
 
-.progress-bar {
-  width: 100%;
+.card-title {
+  margin: 0 0 12px;
+  color: #330867;
+  font-size: 18px;
+  transition: 0.5s ease;
 }
 
-dt {
-  text-align: right;
+.card-description {
+  margin: 0 0 48px;
 }
 
-blockquote img {
-  width: 75px;
+.card-detail-list{
+  padding-top: 5px; 
+  font-size: 0.8em;
+}
+
+.card-detail {
+  padding-left: 5px; 
 }
 
 .card-result {
   text-align: center;
   font-size: 3em;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 -12px -12px;
+}
+
+[ripple] {
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+}
+[ripple] .ripple {
+  position: absolute;
+  background: #FFFFFF;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-animation: ripple 2s;
+          animation: ripple 2s;
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: scale(20);
+            transform: scale(20);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: scale(20);
+            transform: scale(20);
+    opacity: 0;
+  }
 }

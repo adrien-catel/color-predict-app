@@ -10,7 +10,6 @@ class Header extends React.Component {
         <a className="logo" href=".">
           <div className="logo-app">
             <img src={Logo} className="d-inline-block align-top" alt="" />
-            <div>Color Predict</div>
           </div>
         </a>
       </nav>

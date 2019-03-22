@@ -1,14 +1,5 @@
-header a {
-    text-decoration: none !important;
-}
-
-.logo-app div{
-    font-family: 'Lily Script One', cursive;
-    display: inline-block;
-    margin-top: 43px;
-    background: linear-gradient(to left, #d800ff 0%, #330867 100%);
-    -webkit-background-clip: text;
-	  -webkit-text-fill-color: transparent;
+.navbar .logo {
+  margin: 0 auto;
 }
 
 .logo-app img {

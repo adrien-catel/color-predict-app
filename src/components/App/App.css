@@ -1,13 +1,19 @@
 * {
-    box-sizing: border-box;
-    color: #969696;
+  box-sizing: border-box;
+  color: #969696;
 }
 
 body {
-    background-color: #ffffff;
-    margin: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 1.6em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: 0.5s ease;
+  background-color: #ffffff;
+  margin: 0;
 }
+
 
 .app-container {
   padding: 0 0 0 0 !important;
