@@ -16,8 +16,8 @@ import ImgDefault from "../img/climacons/svg/Umbrella.svg";
 
 // values from Dark Sky API
 export const IconsBase = {
-    clear_day: "clear_day",
-    clear_night: "clear_night",
+    clear_day: "clear-day",
+    clear_night: "clear-night",
     rain: "rain",
     snow: "snow",
     sleet: "sleet",
